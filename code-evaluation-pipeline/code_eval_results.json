@@ -1,0 +1,37 @@
+[
+  {
+    "task_id": "fizzbuzz",
+    "status": "passed",
+    "error": null,
+    "traceback": null,
+    "edit_distance": 8
+  },
+  {
+    "task_id": "is_palindrome",
+    "status": "passed",
+    "error": null,
+    "traceback": null,
+    "edit_distance": 16
+  },
+  {
+    "task_id": "binary_search",
+    "status": "passed",
+    "error": null,
+    "traceback": null,
+    "edit_distance": 60
+  },
+  {
+    "task_id": "reverse_linked_list",
+    "status": "passed",
+    "error": null,
+    "traceback": null,
+    "edit_distance": 41
+  },
+  {
+    "task_id": "validate_email",
+    "status": "passed",
+    "error": null,
+    "traceback": null,
+    "edit_distance": 48
+  }
+]
