@@ -1,0 +1,44 @@
+{
+  "tasks": [
+    {
+      "id": "fizzbuzz",
+      "prompt": "Write a Python function fizzbuzz(n) that prints the numbers from 1 to n. For multiples of three print 'Fizz' instead of the number and for multiples of five print 'Buzz'. For numbers which are multiples of both three and five print 'FizzBuzz'.",
+      "entry_point": "fizzbuzz",
+      "language": "python",
+      "difficulty": "easy",
+      "category": "control_flow"
+    },
+    {
+      "id": "is_palindrome",
+      "prompt": "Write a Python function is_palindrome(s) that returns True if the string s is a palindrome (ignoring case and spaces) and False otherwise.",
+      "entry_point": "is_palindrome",
+      "language": "python",
+      "difficulty": "easy",
+      "category": "string_manipulation"
+    },
+    {
+      "id": "binary_search",
+      "prompt": "Write a Python function binary_search(arr, target) that returns the index of target in the sorted array arr, or -1 if target is not found. Use binary search algorithm.",
+      "entry_point": "binary_search",
+      "language": "python",
+      "difficulty": "medium",
+      "category": "algorithm"
+    },
+    {
+      "id": "reverse_linked_list",
+      "prompt": "Write a Python function reverse_linked_list(head) that reverses a singly linked list and returns the new head. Assume nodes have 'val' and 'next' attributes.",
+      "entry_point": "reverse_linked_list",
+      "language": "python",
+      "difficulty": "medium",
+      "category": "data_structure"
+    },
+    {
+      "id": "validate_email",
+      "prompt": "Write a Python function validate_email(email) that returns True if email is a valid email address format (contains @, has domain, etc.) and False otherwise.",
+      "entry_point": "validate_email",
+      "language": "python",
+      "difficulty": "easy",
+      "category": "validation"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# path: developer-telemetry-simulation/sample_output_head.csv
+session_id,developer_id,user_segment,task_id,suggestion_id,timestamp,language,model_version,latency_ms,suggestion_length,final_code_length,accepted,edited_after_accept,ignored,compile_success,test_pass,error_type,hallucination_flag
+1,42,beginner,15,1,2025-01-01T10:00:05Z,python,model_v1,910,24,30,True,True,False,True,False,logical_bug,False
+1,42,beginner,15,2,2025-01-01T10:00:20Z,python,model_v1,780,18,20,False,False,True,False,False,runtime_error,True
