@@ -15,13 +15,14 @@ This demonstrates how a Data Scientist would measure and accelerate product-mark
 - `developer-telemetry-simulation/` — simulate developer telemetry streams; schema docs and sample output.
 - `developer-productivity-analysis/` — notebooks and models for productivity/acceptance analysis.
 - `code-evaluation-pipeline/` — tasks, reference solutions, generators, tests, and evaluation reporting.
-- `dashboard/` — simple app for viewing evaluation outcomes.
+- `dashboard/` — interactive Streamlit dashboard for viewing results.
+- `docs/` — comprehensive documentation (getting started guides, methodology, role alignment).
 
 ## Getting Started
 
 > **New to this repository?** 
-> - **Complete beginner?** Start with **[GETTING_STARTED.md](GETTING_STARTED.md)** for a detailed step-by-step guide
-> - **Want to get running fast?** Check **[QUICK_START.md](QUICK_START.md)** for a condensed version
+> - **Complete beginner?** Start with **[docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)** for a detailed step-by-step guide
+> - **Want to get running fast?** Check **[docs/QUICK_START.md](docs/QUICK_START.md)** for a condensed version
 
 ### 1. Setup Environment
 ```bash
@@ -39,13 +40,14 @@ python app.py all
 
 # Or run individual components:
 python app.py simulate      # Generate synthetic telemetry
-python app.py analyze        # Acceptance rate analysis
-python app.py sql            # SQL queries on telemetry
-python app.py abtest         # A/B testing framework
-python app.py causal         # Causal inference analysis
-python app.py generate       # Generate code from tasks
-python app.py evaluate       # Run correctness tests
-python app.py dashboard      # Launch interactive dashboard
+python app.py analyze       # Acceptance rate analysis
+python app.py sql           # SQL queries on telemetry
+python app.py abtest        # A/B testing framework
+python app.py causal        # Causal inference analysis
+python app.py nlp           # NLP analysis of code generation
+python app.py generate      # Generate code from tasks
+python app.py evaluate      # Run correctness tests
+python app.py dashboard     # Launch interactive dashboard
 ```
 
 ### 3. Explore Results
@@ -53,6 +55,7 @@ python app.py dashboard      # Launch interactive dashboard
 - **SQL Analysis**: `python app.py sql` → See query results
 - **A/B Tests**: `python app.py abtest` → Statistical comparisons
 - **Causal Analysis**: `python app.py causal` → Causal inference results
+- **NLP Analysis**: `python app.py nlp` → NLP analysis of code generation
 
 ## Components
 ### Developer Telemetry Simulation (`developer-telemetry-simulation/`)
@@ -67,6 +70,7 @@ python app.py dashboard      # Launch interactive dashboard
 - `run_sql_analysis.py`: Python script to run SQL queries and display results.
 - `ab_testing_framework.py`: Complete A/B testing framework with statistical tests, power analysis, and effect sizes.
 - `causal_inference.py`: Causal inference methods (propensity score matching, regression adjustment).
+- `nlp_analysis.py`: NLP analysis for code generation (prompt analysis, semantic similarity, failure classification).
 
 ### Code Evaluation Pipeline (`code-evaluation-pipeline/`)
 - `tasks/` with `tasks.json` (prompts/metadata) and `reference_solutions.py`.
@@ -114,13 +118,13 @@ python app.py dashboard      # Launch interactive dashboard
 
 ## Documentation
 
-📖 **See [DOCUMENTATION.md](DOCUMENTATION.md) for a complete guide to all documentation.**
+📖 **See [docs/DOCUMENTATION.md](docs/DOCUMENTATION.md) for a complete guide to all documentation.**
 
 ### Quick Links
-- **[GETTING_STARTED.md](GETTING_STARTED.md)**: Step-by-step beginner's guide
-- **[QUICK_START.md](QUICK_START.md)**: Quick reference
-- **[METHODOLOGY.md](METHODOLOGY.md)**: Comprehensive methodology
-- **[SHOWCASE_SUMMARY.md](SHOWCASE_SUMMARY.md)**: Role alignment
+- **[docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)**: Step-by-step beginner's guide
+- **[docs/QUICK_START.md](docs/QUICK_START.md)**: Quick reference
+- **[docs/METHODOLOGY.md](docs/METHODOLOGY.md)**: Comprehensive methodology
+- **[docs/SHOWCASE_SUMMARY.md](docs/SHOWCASE_SUMMARY.md)**: Role alignment
 - **[docs/NLP_ANALYSIS.md](docs/NLP_ANALYSIS.md)**: NLP techniques
 
 ## Data/Outputs
@@ -138,6 +142,7 @@ This repository showcases the following skills required for the Codex DS role:
 ✅ **Python**: Statistical analysis, modeling, data processing  
 ✅ **Experiment Design**: A/B testing, power analysis, statistical significance  
 ✅ **Causal Inference**: Propensity score matching, regression adjustment  
+✅ **NLP Skills**: Text analysis, semantic similarity, code-to-text alignment  
 ✅ **Product Metrics**: Acceptance rates, latency, productivity metrics  
 ✅ **Code Evaluation**: Correctness, quality, failure mode analysis  
 ✅ **Dashboard Building**: Streamlit, interactive visualizations  
