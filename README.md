@@ -1,176 +1,153 @@
-# OpenAI Codex Data Scientist Showcase  
-*A portfolio demonstrating metrics, evaluation, and analysis for AI-assisted developer tooling*
+# OpenAI Codex DS Showcase
 
----
+A comprehensive showcase repository demonstrating the skills required for the **Data Scientist, Codex** role at OpenAI. This repository includes:
 
-## 🎯 Purpose of This Repository
+- **Telemetry Analysis**: SQL queries, segmentation, cohort analysis
+- **A/B Testing Framework**: Statistical significance testing, power analysis
+- **Causal Inference**: Propensity score matching, regression adjustment
+- **Code Evaluation Pipeline**: Multi-task evaluation with correctness and quality metrics
+- **Interactive Dashboard**: Streamlit dashboard for self-service analytics
+- **Productivity Metrics**: Acceptance rates, latency, session productivity, task completion
 
-This repo is designed to showcase the **skills required for the Data Scientist, Codex role at OpenAI**:
+This demonstrates how a Data Scientist would measure and accelerate product-market fit for AI developer tools.
 
-- Measuring & evaluating AI-assisted code generation  
-- Simulating developer telemetry at scale  
-- Understanding developer workflows and productivity metrics  
-- Running automated code-evaluation pipelines  
-- Designing A/B tests and analyzing model differences  
-- Communicating insights clearly through notebooks and dashboards  
+## Repository Structure
+- `developer-telemetry-simulation/` — simulate developer telemetry streams; schema docs and sample output.
+- `developer-productivity-analysis/` — notebooks and models for productivity/acceptance analysis.
+- `code-evaluation-pipeline/` — tasks, reference solutions, generators, tests, and evaluation reporting.
+- `dashboard/` — simple app for viewing evaluation outcomes.
 
-The goal of this project is to demonstrate **end-to-end ownership** of the DS problems Codex solves every day.
+## Getting Started
 
----
+> **New to this repository?** 
+> - **Complete beginner?** Start with **[GETTING_STARTED.md](GETTING_STARTED.md)** for a detailed step-by-step guide
+> - **Want to get running fast?** Check **[QUICK_START.md](QUICK_START.md)** for a condensed version
 
-## 📦 Repository Structure
+### 1. Setup Environment
 ```bash
-
-openai-codex-ds-showcase/
-│
-├── developer-telemetry-simulation/
-│ ├── simulate_telemetry.py
-│ ├── telemetry_schema.md
-│ └── sample_output.csv
-│
-├── developer-productivity-analysis/
-│ ├── productivity_analysis.ipynb
-│ ├── acceptance_rate_model.py
-│ └── charts/
-│
-├── code-evaluation-pipeline/
-│ ├── tasks/
-│ │ ├── fizzbuzz.py
-│ │ ├── palindrome.py
-│ │ └── …
-│ ├── generate_code.py
-│ ├── run_tests.py
-│ ├── compute_edit_distance.py
-│ └── evaluation_report.md
-│
-├── dashboard/
-│ └── app.py
-│
-└── README.md <-- (this file)
-
+git clone <repo-url>
+cd openai-codex-ds-showcase
+python -m venv .venv
+source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+pip install -r requirements.txt
 ```
 
-
----
-
-## 🧠 Skills Demonstrated (Matched to Codex DS Requirements)
-
-### ✔ 1. Understanding Developer Telemetry  
-Codex DS analyzes IDE-level signals such as:
-
-- suggestion acceptance rate  
-- edit distance between suggestion and final code  
-- compile/run failures  
-- keystrokes saved  
-- latency  
-- time-to-completion  
-- fallback requests  
-- hallucination/failure mode categories  
-
-The repo includes a **synthetic telemetry generator** to model thousands of “AI coding sessions” with configurable behaviors.
-
----
-
-### ✔ 2. Productivity & Behavioral Analysis  
-Notebook includes:
-
-- Acceptance-rate modeling (logistic regression / XGBoost)
-- Latency → satisfaction relationships
-- Causal inference: *“Would this developer have been faster without AI?”*
-- Developer segmentation via clustering
-- Fail-case taxonomy analysis
-
-This mirrors how the Codex DS team measures **developer experience and model improvements**.
-
----
-
-### ✔ 3. Automated Code Evaluation Pipeline  
-Codex is evaluated on:
-
-- test pass rates  
-- correctness  
-- run-time behavior  
-- static analysis results  
-- refactor/edit distance  
-- error types & categories  
-- quality deltas between model versions  
-
-This repository includes an automated pipeline that:
-
-1. Sends coding tasks to the OpenAI API  
-2. Executes the returned code in a safe sandbox  
-3. Runs unit tests  
-4. Computes edit distance & quality metrics  
-5. Aggregates results into a single evaluation report  
-
----
-
-### ✔ 4. Experimental Design & A/B Testing  
-The analysis includes:
-
-- model A vs. model B acceptance-rate comparisons  
-- latency impact on engagement  
-- code-eval pass-rate deltas  
-- developer-level random effects  
-- bootstrapped confidence intervals  
-
-This demonstrates readiness to own **metric design, experiment analysis, and model evaluation** at OpenAI.
-
----
-
-## 🚀 How to Run
-
-### 1. Generate telemetry
+### 2. Run Full Pipeline
 ```bash
-cd developer-telemetry-simulation
-python simulate_telemetry.py
+# Run everything end-to-end
+python app.py all
+
+# Or run individual components:
+python app.py simulate      # Generate synthetic telemetry
+python app.py analyze        # Acceptance rate analysis
+python app.py sql            # SQL queries on telemetry
+python app.py abtest         # A/B testing framework
+python app.py causal         # Causal inference analysis
+python app.py generate       # Generate code from tasks
+python app.py evaluate       # Run correctness tests
+python app.py dashboard      # Launch interactive dashboard
 ```
 
-### 2. Run the productivity analysis notebook
+### 3. Explore Results
+- **Dashboard**: `python app.py dashboard` → Opens Streamlit UI
+- **SQL Analysis**: `python app.py sql` → See query results
+- **A/B Tests**: `python app.py abtest` → Statistical comparisons
+- **Causal Analysis**: `python app.py causal` → Causal inference results
 
-Open:
-```bash
-developer-productivity-analysis/productivity_analysis.ipynb
-```
+## Components
+### Developer Telemetry Simulation (`developer-telemetry-simulation/`)
+- `simulate_telemetry.py`: generates synthetic telemetry events (open, edit, run, test, commit).
+- `telemetry_schema.md`: documents fields and event types.
+- `sample_output_head.csv`: example snippet of generated telemetry.
 
-### 3. Run code evaluation pipeline
-```bash
-cd code-evaluation-pipeline
-python generate_code.py
-python run_tests.py
-```
+### Developer Productivity Analysis (`developer-productivity-analysis/`)
+- `productivity_analysis_template.ipynb`: Starter notebook for exploring acceptance/throughput.
+- `acceptance_rate_model.py`: Logistic regression model for acceptance rates.
+- `sql_queries.sql`: Comprehensive SQL queries for telemetry analysis (segmentation, cohorts, time-series).
+- `run_sql_analysis.py`: Python script to run SQL queries and display results.
+- `ab_testing_framework.py`: Complete A/B testing framework with statistical tests, power analysis, and effect sizes.
+- `causal_inference.py`: Causal inference methods (propensity score matching, regression adjustment).
 
-### 4. Launch the demo dashboard
-```bash
-cd dashboard
-streamlit run app.py
-```
+### Code Evaluation Pipeline (`code-evaluation-pipeline/`)
+- `tasks/` with `tasks.json` (prompts/metadata) and `reference_solutions.py`.
+- `generate_code.py`: produce candidate solutions from prompts.
+- `run_tests.py`: execute task-specific tests.
+- `compute_edit_distance.py`: compute Levenshtein distance to references.
+- `evaluation_report.md`: README-style summary of metrics and how to interpret results.
 
----
+### Dashboard (`dashboard/`)
+- `app.py`: Interactive Streamlit dashboard with:
+  - Code evaluation results visualization
+  - Telemetry analysis (acceptance rates, latency, segmentation)
+  - Model version comparison (A/B test results)
+  - Failure diagnostics and error analysis
+  - Interactive filters and drill-downs
 
-### 🧪 Example Metrics Included
+## Key Features
 
-Suggestion Acceptance Rate
+### 📊 Metrics & Analysis
+- **Acceptance Rate**: Model version, language, user segment breakdowns
+- **Edit Distance**: Levenshtein distance to reference solutions
+- **Latency Analysis**: Impact on acceptance, percentiles, distributions
+- **Session Productivity**: Task completion rates, session-level metrics
+- **Failure Diagnostics**: Error type classification, hallucination detection
 
-- Edit Distance From Final Code
-- Test Pass Rate
-- Code Quality Score
-- Compilation Success Ratio
-- Time-To-Completion
-- Latency Buckets (P50, P90, P99)
-- Failure Mode Categorization
-- Overall “Developer Happiness” score
+### 🔬 Statistical Methods
+- **A/B Testing**: Chi-square, t-tests, proportion tests with power analysis
+- **Causal Inference**: Propensity score matching, regression adjustment
+- **Confidence Intervals**: Bootstrap methods for uncertainty quantification
+- **Effect Sizes**: Cohen's h, Cohen's d for practical significance
 
-These metrics demonstrate the DS mindset required to improve model performance, developer trust, and product usability.
+### 💾 SQL Analysis
+- Segmentation queries (by language, user segment, model version)
+- Cohort analysis (developer retention, behavior over time)
+- Time-series analysis (trends, seasonality)
+- Session-level aggregations
+- Error and hallucination analysis
 
---- 
+### 📈 Dashboard
+- Interactive visualizations with Plotly
+- Real-time filtering and segmentation
+- Model comparison with statistical significance
+- Failure mode diagnostics
+- Self-service analytics for PM, Eng, Design teams
 
-## 🧰 Technologies Used
+## Documentation
 
-- Python
-- Jupyter / Colab
-- Pandas, NumPy, Scikit-Learn, XGBoost
-- Matplotlib / Seaborn / Plotly
-- Streamlit Dashboard
-- subprocess sandbox for code execution
-- OpenAI API (optional)
+📖 **See [DOCUMENTATION.md](DOCUMENTATION.md) for a complete guide to all documentation.**
+
+### Quick Links
+- **[GETTING_STARTED.md](GETTING_STARTED.md)**: Step-by-step beginner's guide
+- **[QUICK_START.md](QUICK_START.md)**: Quick reference
+- **[METHODOLOGY.md](METHODOLOGY.md)**: Comprehensive methodology
+- **[SHOWCASE_SUMMARY.md](SHOWCASE_SUMMARY.md)**: Role alignment
+- **[docs/NLP_ANALYSIS.md](docs/NLP_ANALYSIS.md)**: NLP techniques
+
+## Data/Outputs
+- Generated solutions: `code-evaluation-pipeline/code_solutions/`
+- Evaluation metrics: `code-evaluation-pipeline/code_eval_results.json`
+- Telemetry data: `developer-telemetry-simulation/telemetry_events.csv`
+- SQL database: `developer-productivity-analysis/telemetry.db` (created on first run)
+- Reports: `code-evaluation-pipeline/evaluation_report.md`
+
+## Skills Demonstrated
+
+This repository showcases the following skills required for the Codex DS role:
+
+✅ **SQL Fluency**: Complex queries for segmentation, cohorts, time-series  
+✅ **Python**: Statistical analysis, modeling, data processing  
+✅ **Experiment Design**: A/B testing, power analysis, statistical significance  
+✅ **Causal Inference**: Propensity score matching, regression adjustment  
+✅ **Product Metrics**: Acceptance rates, latency, productivity metrics  
+✅ **Code Evaluation**: Correctness, quality, failure mode analysis  
+✅ **Dashboard Building**: Streamlit, interactive visualizations  
+✅ **Communication**: Clear documentation, actionable insights  
+
+## Troubleshooting
+
+- **Imports fail**: Check that generated code has no top-level side effects and meets task signatures.
+- **Tests fail**: Inspect task-specific edge cases; see `reference_solutions.py` for intent.
+- **Dashboard empty**: Ensure evaluation outputs exist. Run `python app.py all` first.
+- **SQL errors**: Make sure telemetry simulation has run (`python app.py simulate`).
+- **Missing dependencies**: Run `pip install -r requirements.txt` to install all packages.
+
