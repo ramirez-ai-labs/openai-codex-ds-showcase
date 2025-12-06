@@ -1,12 +1,18 @@
 # path: code-evaluation-pipeline/tasks/reference_solutions.py
 """
-Reference solutions for each coding task.
+Reference solutions for coding tasks in the evaluation pipeline.
 
-Used for:
-- baselines
-- optional edit-distance comparisons
-- verifying test correctness
+This file contains canonical implementations of common coding problems that serve as:
+1. Ground truth solutions for evaluating code submissions
+2. Baselines for performance and correctness comparison
+3. Reference implementations for test case validation
+4. Gold standards for edit-distance based similarity scoring
+
+Each function represents a complete, correct solution to its respective problem
+and follows Python best practices for style and efficiency. These solutions are
+used by the evaluation pipeline to assess the quality of generated or submitted code.
 """
+
 
 def fizzbuzz(n: int):
     for i in range(1, n + 1):

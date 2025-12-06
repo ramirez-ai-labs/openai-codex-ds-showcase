@@ -15,24 +15,47 @@ This shows how a Codex Data Scientist would:
 - Present results in a clear, actionable format
 """
 
-import pandas as pd
-import sqlite3
-from pathlib import Path
-from sqlalchemy import create_engine, text
-import sys
+# Import necessary libraries
+import pandas as pd              # For data manipulation and analysis
+import sqlite3                   # For working with SQLite databases
+from pathlib import Path         # For handling file paths
+from sqlalchemy import create_engine, text  # For database connections and SQL execution
+import sys                       # For system-specific functions
 
 
 def create_database_from_csv(csv_path: str, db_path: str = "telemetry.db"):
-    """Create a SQLite database from the telemetry CSV."""
+    """
+    Create a SQLite database from a CSV file containing telemetry data.
+    
+    Args:
+        csv_path (str): Path to the input CSV file
+        db_path (str, optional): Path where the SQLite database will be created. Defaults to "telemetry.db"
+        
+    Returns:
+        str: Path to the created database file
+    """
     print(f"📊 Loading telemetry data from {csv_path}...")
+    
+    # Read the CSV file into a pandas DataFrame
+    # A DataFrame is like a spreadsheet or SQL table in memory
     df = pd.read_csv(csv_path)
     
-    # Create SQLite database
+    # Create a connection to a SQLite database
+    # If the database doesn't exist, it will be created automatically
     conn = sqlite3.connect(db_path)
+    
+    # Save the DataFrame to the SQLite database as a table named 'telemetry_events'
+    # if_exists='replace' means it will overwrite the table if it already exists
+    # index=False means we don't want to write row indices to the database
     df.to_sql("telemetry_events", conn, if_exists="replace", index=False)
+    
+    # Close the database connection to free up resources
     conn.close()
     
+    # Print a success message with the number of rows processed
     print(f"✅ Created database with {len(df)} rows at {db_path}")
+    
+    # Return the path to the created database file
     return db_path
 
 
