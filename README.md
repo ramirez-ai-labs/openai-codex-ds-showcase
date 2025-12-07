@@ -7,23 +7,31 @@ This repo simulates how a Codex DS analyzes developer telemetry, evaluates LLM c
 
 ## 🎯 Who Is This Repo For?
 
-This repo is designed for **three audiences**, each with a guided path:
+This repository is designed for different audiences, each with a tailored entry point:
 
-### 👶 Beginners / Recruiters → Start here  
-**👉 `/docs/01_QUICK_START.md`**  
-Run the project in 5 minutes — no ML background required.
+### � Quick Start (5 min)
+**👉 [/docs/01_QUICK_START.md](/docs/01_QUICK_START.md)**  
+Get up and running in minutes. Perfect for recruiters or anyone who wants a quick overview.
 
-### 🛠️ Learners / Students → Understand the system  
-**👉 `/docs/02_GETTING_STARTED.md`**  
-Step-by-step walkthrough of telemetry, evaluation, models, and dashboards.
+### � Developer Analytics Guide  
+**👉 [/docs/02_DEVELOPER_ANALYTICS_GUIDE.md](/docs/02_DEVELOPER_ANALYTICS_GUIDE.md)**  
+Comprehensive walkthrough of the developer telemetry, model evaluation, and analytics pipeline.
 
-### 🧠 Senior Reviewers / Hiring Managers → Deep technical reasoning  
-**👉 `/docs/04_SHOWCASE_SUMMARY.md`**  
-**👉 `/docs/05_METHODOLOGY.md`**
+### � NLP & Code Analysis  
+**👉 [/docs/03_NLP_ANALYSIS.md](/docs/03_NLP_ANALYSIS.md)**  
+Deep dive into the NLP techniques used for code generation evaluation and analysis.
+
+### 🎯 Project Showcase  
+**👉 [/docs/04_SHOWCASE_SUMMARY.md](/docs/04_SHOWCASE_SUMMARY.md)**  
+How this project demonstrates key data science skills for AI-powered developer tools.
+
+### 🧠 Technical Deep Dives  
+**👉 [/docs/05_METHODOLOGY.md](/docs/05_METHODOLOGY.md)**  
+In-depth technical methodology, experimental design, and causal inference approaches.
 
 ---
 
-## 📦 What This Repo Demonstrates (End-to-End Pipeline)
+## 🏗️ Project Architecture (End-to-End Pipeline)
 
 ```mermaid
 flowchart TD
