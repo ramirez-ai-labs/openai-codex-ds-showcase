@@ -39,6 +39,9 @@ try:
 except ImportError:
     PLOT_AVAILABLE = False
 
+# ===============================================================
+# Load Data
+# ===============================================================
 
 # ===============================================================
 # Load Data
@@ -86,19 +89,20 @@ def preprocess_data(df: pd.DataFrame):
 
     numerical_features = [f for f in features if f not in categorical_features]
 
-    # Numerical features ➝ scale them
+    # Numerical features → scale them
     numeric_transformer = Pipeline(steps=[
         ("scaler", StandardScaler())
     ])
 
-    # Categorical features ➝ one-hot encode them
-    # Compact explanation:
-    # --------------------
-    # OneHotEncoder converts categories like "junior", "senior", "python"
-    # into separate 0/1 columns so ML models can learn from them.
-    categorical_transformer = Pipeline(steps=[
-        ("onehot", OneHotEncoder(handle_unknown="ignore", sparse=False))
-    ])
+    # SAFE OneHotEncoder — supports sklearn >= 1.4 and older versions
+    try:
+        onehot = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+    except TypeError:
+        # fallback for older sklearn
+        onehot = OneHotEncoder(handle_unknown="ignore", sparse=False)
+
+    # Categorical features → one-hot encode them
+    categorical_transformer = Pipeline(steps=[("onehot", onehot)])
 
     preprocessor = ColumnTransformer(
         transformers=[
@@ -172,11 +176,9 @@ def evaluate_model(model, X_test, y_test):
 
     ✔ AUC Score  
         Measures how well the model *ranks* suggestions from low→high acceptance likelihood.
-        0.5 = random guessing, 1.0 = perfect ranking.
 
     ✔ Feature Importance  
-        Shows which signals matter most (e.g., latency, model version).
-        Higher absolute coefficients = stronger influence.
+        Which signals matter most (e.g., latency, model version).
     """
 
     print("\n📊 Model Evaluation\n" + "-" * 60)
@@ -206,9 +208,8 @@ def evaluate_model(model, X_test, y_test):
             if name == "num":
                 feature_names.extend(cols)
             elif name == "cat":
-                feature_names.extend(
-                    transformer.named_steps["onehot"].get_feature_names_out(cols)
-                )
+                ohe = transformer.named_steps["onehot"]
+                feature_names.extend(ohe.get_feature_names_out(cols))
 
         coefs = classifier.coef_[0]
 
@@ -222,27 +223,6 @@ def evaluate_model(model, X_test, y_test):
 
     except Exception as e:
         print(f"\n⚠ Feature importance unavailable: {e}")
-
-
-# ===============================================================
-# Optional Plot
-# ===============================================================
-
-def plot_feature_importance(model, feature_names):
-    """Visualize top features (optional)."""
-    if not PLOT_AVAILABLE:
-        print("Plotting skipped — matplotlib not installed.")
-        return
-
-    coef = model.named_steps["classifier"].coef_[0]
-    df = pd.DataFrame({"Feature": feature_names, "Importance": np.abs(coef)})
-    df = df.sort_values("Importance", ascending=False).head(10)
-
-    plt.figure(figsize=(10, 5))
-    sns.barplot(data=df, x="Importance", y="Feature")
-    plt.title("Top 10 Important Features")
-    plt.tight_layout()
-    plt.show()
 
 
 # ===============================================================
