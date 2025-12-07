@@ -28,7 +28,7 @@ Step-by-step walkthrough of telemetry, evaluation, models, and dashboards.
 ```mermaid
 flowchart TD
     A[Simulated Developer Telemetry] --> B[Data Cleaning & Feature Engineering]
-    B --> C[Acceptance Rate Modeling (Logistic Regression)]
+    B --> C["Acceptance Rate Modeling (Logistic Regression)"]
     B --> D[A/B Testing Framework]
     B --> E[Causal Inference Analysis]
     B --> F[NLP Prompt & Code Analysis]
