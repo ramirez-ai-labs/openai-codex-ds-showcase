@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-A condensed version for those who want to get running fast. For detailed explanations, see [GETTING_STARTED.md](GETTING_STARTED.md).
+A condensed version for those who want to get running fast. For detailed explanations, see the [Developer Analytics Guide](02_DEVELOPER_ANALYTICS_GUIDE.md).
 
 ## 🚀 Setup (One Time)
 
@@ -132,24 +132,16 @@ python app.py all
 
 ## 🔍 Understanding the Flow
 
+```mermaid
+flowchart TD
+    A["Step 1: SIMULATE DATA"] --> B["Step 2: ANALYZE<br/>Basic Stats"]
+    B --> C["Step 3: SQL<br/>Segmentation"]
+    C --> D["Step 4: A/B TEST<br/>Model Comparison"]
+    D --> E["Step 5: CAUSAL ANALYSIS<br/>True Effects"]
+    E --> F["Step 6: GENERATE CODE"]
+    F --> G["Step 7: EVALUATE CODE"]
+    G --> H["Step 8: DASHBOARD<br/>Visualize Everything"]
 ```
-1. SIMULATE DATA
-   ↓
-2. ANALYZE (basic stats)
-   ↓
-3. SQL (segmentation)
-   ↓
-4. A/B TEST (comparison)
-   ↓
-5. CAUSAL (true effects)
-   ↓
-6. GENERATE CODE
-   ↓
-7. EVALUATE CODE
-   ↓
-8. DASHBOARD (visualize all)
-```
-
 ---
 
 ## 📁 Key Files to Explore
@@ -209,5 +201,5 @@ After running the pipeline, check these files:
 
 ---
 
-For detailed explanations of what each step does and why, see **[GETTING_STARTED.md](GETTING_STARTED.md)**.
+For detailed explanations of what each step does and why, see the [Developer Analytics Guide](02_DEVELOPER_ANALYTICS_GUIDE.md).
 
