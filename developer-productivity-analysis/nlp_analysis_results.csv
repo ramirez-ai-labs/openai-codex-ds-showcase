@@ -1,0 +1,6 @@
+task_id,status,prompt_complexity,prompt_word_count,code_line_count,code_has_loops,code_has_conditionals,failure_mode_nlp,requirement_coverage,requirements_found
+fizzbuzz,passed,24.2,42,10,True,True,unknown_error,1.0,2
+is_palindrome,passed,15.2,22,3,True,True,unknown_error,1.0,2
+binary_search,passed,23.8,28,11,True,True,unknown_error,1.0,1
+reverse_linked_list,passed,15.3,23,9,True,False,unknown_error,1.0,2
+validate_email,passed,25.4,24,14,False,True,unknown_error,1.0,2
