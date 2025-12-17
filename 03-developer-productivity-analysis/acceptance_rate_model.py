@@ -38,7 +38,11 @@ try:
     PLOT_AVAILABLE = True
 except ImportError:
     PLOT_AVAILABLE = False
-    
+
+# ===============================================================
+# Load Data
+# ===============================================================
+
 # ===============================================================
 # Load Data
 # ===============================================================
@@ -86,10 +90,20 @@ def preprocess_data(df: pd.DataFrame):
     numerical_features = [f for f in features if f not in categorical_features]
 
     # Numerical features → scale them
+    # Numerical features → scale them
     numeric_transformer = Pipeline(steps=[
         ("scaler", StandardScaler())
     ])
 
+    # SAFE OneHotEncoder — supports sklearn >= 1.4 and older versions
+    try:
+        onehot = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
+    except TypeError:
+        # fallback for older sklearn
+        onehot = OneHotEncoder(handle_unknown="ignore", sparse=False)
+
+    # Categorical features → one-hot encode them
+    categorical_transformer = Pipeline(steps=[("onehot", onehot)])
     # SAFE OneHotEncoder — supports sklearn >= 1.4 and older versions
     try:
         onehot = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
@@ -175,6 +189,7 @@ def evaluate_model(model, X_test, y_test):
 
     ✔ Feature Importance  
         Which signals matter most (e.g., latency, model version).
+        Which signals matter most (e.g., latency, model version).
     """
 
     print("\n📊 Model Evaluation\n" + "-" * 60)
@@ -204,6 +219,8 @@ def evaluate_model(model, X_test, y_test):
             if name == "num":
                 feature_names.extend(cols)
             elif name == "cat":
+                ohe = transformer.named_steps["onehot"]
+                feature_names.extend(ohe.get_feature_names_out(cols))
                 ohe = transformer.named_steps["onehot"]
                 feature_names.extend(ohe.get_feature_names_out(cols))
 
