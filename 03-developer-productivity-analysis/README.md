@@ -1,91 +1,33 @@
-# Developer Telemetry & Productivity Analysis — README
-## What This Folder Is About
+# Developer Productivity Analysis
 
-This folder demonstrates how AI-assisted coding systems are evaluated in practice, using developer telemetry data rather than just model accuracy.
+Analyzes AI coding telemetry to answer: Do developers accept suggestions? How much editing effort is required? Does latency or quality matter more? These scripts mirror how AI developer experience teams turn raw telemetry into product decisions.
 
-Instead of asking “Is the model smart?”, these files help answer:
+## Prerequisites
+- Telemetry CSV from the simulation step (`../01-developer-telemetry-simulation/telemetry_events.csv`).
+- Python 3 with repo dependencies installed (`pip install -r requirements.txt`).
+- Note: scripts currently look for `../developer-telemetry-simulation/telemetry_events.csv`. If you’ve renamed the folder, either copy the CSV there or update the default path in each script.
 
-- Do developers accept AI suggestions?
-- How much editing effort is required?
-- Does lower latency or higher quality matter more?
-- How do retries, failures, and hallucinations affect productivity?
-
-This mirrors the kind of analysis done by Codex / AI productivity / developer experience teams.
-
-##  Big Picture: The Analysis Pipeline
-
-Think of this folder as a mini end-to-end analytics system:
+## Quick Start (common runs)
+From the repo root:
 ```bash
-Telemetry data
-   ↓
-Metrics & feature extraction
-   ↓
-Statistical / causal analysis
-   ↓
-Productivity insights
-
+python 03-developer-productivity-analysis/acceptance_rate_model.py
+python 03-developer-productivity-analysis/ab_testing_framework.py
+python 03-developer-productivity-analysis/run_sql_analysis.py
+python 03-developer-productivity-analysis/nlp_analysis.py
 ```
-Each file contributes one piece of that pipeline
+Open the notebook if you prefer an interactive walk-through:
+- `03-developer-productivity-analysis/productivity_analysis_template.ipynb`
 
----
+## What’s Inside
+- `acceptance_rate_model.py` — trains a logistic regression to predict suggestion acceptance; prints AUC, classification report, and top features.
+- `ab_testing_framework.py` — runs statistical tests (proportions, power, CIs) to compare model versions and emits rollout guidance.
+- `causal_inference.py` — explores causal impacts of latency/quality on acceptance using matching and regression.
+- `run_sql_analysis.py` + `sql_queries.sql` — loads telemetry into SQLite and runs segmentation/cohort SQL queries; produces `telemetry.db` if missing.
+- `nlp_analysis.py` — basic text analytics on suggestion content (keywords, similarity) with results saved to `nlp_analysis_results.csv`.
+- `telemetry.db` — SQLite database generated from telemetry for SQL analyses.
 
-# File-by-File Guide
-1. simulate_telemetry.py
-
-Purpose: Create realistic fake developer telemetry data.
-
-What it does:
-
-- Simulates AI code suggestions
-- Randomly assigns acceptance, latency, errors, retries, hallucinations
-- Writes rows to a CSV file (telemetry_events.csv)
-
-Why this exists:
-
-- Real telemetry is private
-- Simulation lets us reason about real systems safely
-- Every downstream file depends on this data
-
-📌 Start here if you want to understand where the data comes from.
-
----
-
-2. telemetry_schema.md
-
-Purpose: Define what each telemetry field means.
-
-Examples:
-
-- accepted: whether the developer kept the suggestion
-- latency_ms: how long the suggestion took
-- hallucination_flag: whether the suggestion was incorrect
-- user_segment: novice vs experienced developer
-
-Why this matters:
-
-- Metrics are meaningless without definitions
-- This mirrors real production telemetry specs
-
-📌 Read this if you want to understand the data columns.
-
----
-
-3. compute_edit_distance.py
-
-Purpose: Measure how much effort a developer spent editing a suggestion.
-
-What it does:
-
-- Computes edit distance between:
-    - AI suggestion
-    - Final accepted code
-- Lower distance = less work for the developer
-
-Why this matters:
-- Acceptance alone is not enough
-- Edit distance approximates developer effort
-- This metric is central to AI coding research
-
-📌 This connects code quality to human effort.
-
----
+## Suggested Analyses
+- Acceptance vs. latency and by user segment (beginner vs. expert).
+- Model v1 vs. v2 uplift via A/B tests and power checks.
+- Edit distance or similarity signals vs. acceptance to link quality and effort.
+- Cohort trends over time using the SQL queries.
